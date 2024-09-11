@@ -1,9 +1,10 @@
 # Ant Design Pro
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+此项目用来配合AbpWebProject接口使用。
 
-## Environment Prepare
+[github上的AbpWebProject](https://github.com/chen1tian/AbpWebProject)
 
+## 安装依赖
 Install `node_modules`:
 
 ```bash
@@ -14,6 +15,14 @@ or
 
 ```bash
 yarn
+```
+
+## 启动
+
+test环境已经配置过，会与http://localhost:5000的接口对接。
+
+```
+npm run start:test
 ```
 
 ## Provided Scripts
