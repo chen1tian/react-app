@@ -8,8 +8,10 @@ import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import React from 'react';
+import { useEffect } from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
+import { useMount } from 'ahooks';
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -59,7 +61,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
             },
         },
         waterMarkProps: {
-            
+
         },
         footerRender: () => <Footer />,
         onPageChange: () => {
@@ -103,6 +105,25 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         // 增加一个 loading 的状态
         childrenRender: (children) => {
             // if (initialState?.loading) return <PageLoading />;
+
+            const { initConnection, connectionSuccess, connectionClose, connect } = useModel('signalRHub', (ret) => ({
+                initConnection: ret.initConnection,
+                connect: ret.connect,
+                connectionSuccess: ret.connectionSuccess,
+                connectionClose: ret.connectionClose
+            }));
+
+            // 初始化
+            useMount(() => {
+                // 初始化连接
+                initConnection('/api/app/msg-hub');
+            });
+
+            useEffect(() => {
+                // 初始化连接
+                connect();
+            }, [connectionSuccess, connectionClose]);
+
             return (
                 <>
                     {children}
