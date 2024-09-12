@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 import { useMount } from 'ahooks';
+import NotifyIcon from './components/RightContent/NotifyIcon';
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -52,7 +53,7 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
     return {
-        actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
+        actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />, <NotifyIcon key="notify" />],
         avatarProps: {
             src: initialState?.currentUser?.avatar,
             title: <AvatarName />,

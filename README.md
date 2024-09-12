@@ -19,10 +19,10 @@ yarn
 
 ## 启动
 
-test环境已经配置过，会与http://localhost:5000的接口对接。
+`npm run dev`实际上会启动test环境，该环境已经配置过代理，会与http://localhost:5000的接口对接。
 
 ```
-npm run start:test
+npm run dev
 ```
 
 ## Provided Scripts
